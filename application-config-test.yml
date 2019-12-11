@@ -1,3 +1,5 @@
+server:
+  port: 8989
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
@@ -5,3 +7,15 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&serverTimezone=UTC
     username: root
     password: root
+  application:
+    name: client
+
+#服务注册中心的配置内容，指定服务注册中心的位置
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8888/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+
